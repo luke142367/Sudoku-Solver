@@ -53,6 +53,7 @@ public class SudokuHandler {
         loadColor = new Color(103,152,152);
         Color temp = new Color(80, 126, 126);
         loadButton = new Button(loadClicker,175,90,120,703,loadColor,"Load");
+        //TODO: Add function for step and solve
         stepButton = new Button(null,175,90,312,703,5,loadColor,"Step");
         solveButton = new Button(null,175,90,504,703,loadColor,"Solve");
 
@@ -74,7 +75,7 @@ public class SudokuHandler {
         if(init) {
             g.setColor(Color.BLACK);
             g.drawImage(logo, 72, 2, null);
-            g.setColor(new Color(228,228,228));
+            g.setColor(new Color(242, 242, 242));
             g.fillRect(Wpadding, Tpadding, (width - Wpadding * 2), (width - Wpadding * 2));
             g.setStroke(new BasicStroke(4));
             g.setColor(Color.BLACK);

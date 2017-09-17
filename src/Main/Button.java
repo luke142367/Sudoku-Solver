@@ -33,7 +33,11 @@ public class Button {
     }
 
     public void click() {
-        clicker.click();
+        if(clicker != null) {
+            clicker.click();
+        }else{
+            System.out.println("This button has no function");
+        }
     }
 
     public void draw(Graphics2D g){
