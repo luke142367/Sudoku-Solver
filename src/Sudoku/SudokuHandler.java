@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.List;
 
 public class SudokuHandler {
 
@@ -18,6 +19,8 @@ public class SudokuHandler {
     private WindowPanel windowPanel;
     private boolean init = false;
     private boolean loaded = false;
+    private SudokuSolver solver;
+    private List<Integer> options;
 
     //buttons
     private Button loadButton;
@@ -46,18 +49,29 @@ public class SudokuHandler {
         sudokuBoard = sudokuReader.readSudoku();
         System.out.println("Sudoku loaded");
         loaded = true;
+        solver = new SudokuSolver(sudokuBoard);
     }
 
     public void init(){
         ButtonClick loadClicker = new ButtonClick() { public void click() { loadSudoku(); } };
+        ButtonClick stepClicker = new ButtonClick() { public void click() {
+            solver.step();
+            }
+        };
+        ButtonClick solveClicker = new ButtonClick() {
+            public void click() {
+                solver.calculateAllOptions();
+            }
+        };
         loadColor = new Color(103,152,152);
         Color temp = new Color(80, 126, 126);
         loadButton = new Button(loadClicker,175,90,120,703,loadColor,"Load");
-        //TODO: Add function for step and solve
-        stepButton = new Button(null,175,90,312,703,5,loadColor,"Step");
-        solveButton = new Button(null,175,90,504,703,loadColor,"Solve");
+        //TODO: change step function to real action
+        stepButton = new Button(stepClicker,175,90,312,703,5,loadColor,"Step");
+        solveButton = new Button(solveClicker,175,90,504,703,loadColor,"Solve");
 
         init = true;
+
     }
 
     public BufferedImage loadImage(String fileLocation){

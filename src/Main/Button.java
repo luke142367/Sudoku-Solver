@@ -5,7 +5,7 @@ import java.awt.*;
 public class Button {
 
     private int xPadding = 0;
-    ButtonClick clicker;
+    private ButtonClick clicker;
     private int width, height,topX,topY;
     private Color colour;
     private String buttonText;
