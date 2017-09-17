@@ -98,6 +98,7 @@ public class WindowPanel extends JPanel implements Runnable, MouseListener, Mous
     }
 
     public void mouseClicked(MouseEvent e){
+        sudokuHandler.mouseClick(e);
     }
 
     public void mousePressed(MouseEvent e) {
@@ -121,6 +122,6 @@ public class WindowPanel extends JPanel implements Runnable, MouseListener, Mous
     }
 
     public void mouseMoved(MouseEvent e) {
-        sudokuHandler.mouseMoved(e,this);
+        sudokuHandler.mouseMoved(e);
     }
 }

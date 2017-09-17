@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class SudokuReader {
-    private static final String filePath = "C:/Users/LUKE_2/Desktop/Sudokus.txt";
+    private static final String filePath = "src/res/sudoku.txt";
     BufferedReader br;
     FileReader fr;
 

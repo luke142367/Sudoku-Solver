@@ -17,6 +17,7 @@ public class SudokuHandler {
     private BufferedImage logo;
     private WindowPanel windowPanel;
     private boolean init = false;
+    private boolean loaded = false;
 
     //buttons
     private Button loadButton;
@@ -42,6 +43,7 @@ public class SudokuHandler {
     private void loadSudoku(){
         sudokuBoard = sudokuReader.readSudoku();
         System.out.println("Sudoku loaded");
+        loaded = true;
     }
 
     public void init(){
@@ -49,8 +51,8 @@ public class SudokuHandler {
         loadColor = new Color(103,152,152);
         Color temp = new Color(80, 126, 126);
         loadButton = new Button(loadClicker,175,90,120,703,loadColor,"Load");
-        stepButton = new Button(loadClicker,175,90,312,703,loadColor,"Load");
-        solveButton = new Button(loadClicker,175,90,504,703,loadColor,"Load");
+        stepButton = new Button(loadClicker,175,90,312,703,5,loadColor,"Step");
+        solveButton = new Button(loadClicker,175,90,504,703,loadColor,"Solve");
 
         init = true;
     }
@@ -94,6 +96,8 @@ public class SudokuHandler {
             g.drawLine(103,430,697,430);
             g.drawLine(103,562,697,562);
             g.drawLine(103,628,697,628);
+            //Draw numbers
+
             loadButton.draw(g);
             stepButton.draw(g);
             solveButton.draw(g);
@@ -101,10 +105,21 @@ public class SudokuHandler {
     }
 
 
-    public void mouseMoved(MouseEvent e, WindowPanel windowPanel) {
-        /*
-        Cursor cursor = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
-        windowPanel.setCursor(cursor);
-        */
+    public void mouseMoved(MouseEvent e) {
+        int x = e.getX();
+        int y = e.getY();
+        if(loadButton.mouseOver(x,y)|| stepButton.mouseOver(x,y)|| solveButton.mouseOver(x,y)){
+            windowPanel.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        }else{
+            windowPanel.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+        }
+    }
+
+    public void mouseClick(MouseEvent e){
+        int x = e.getX();
+        int y = e.getY();
+        loadButton.clickAt(x,y);
+        stepButton.clickAt(x,y);
+        solveButton.clickAt(x,y);
     }
 }
