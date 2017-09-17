@@ -29,6 +29,8 @@ public class SudokuHandler {
     private int Wpadding = 103; //Width padding
     private int Tpadding = 100; //Top padding
     private int width = 800, height = 800;
+    Font font = new Font("Arial", Font.PLAIN, 45);
+
 
 
 
@@ -51,8 +53,8 @@ public class SudokuHandler {
         loadColor = new Color(103,152,152);
         Color temp = new Color(80, 126, 126);
         loadButton = new Button(loadClicker,175,90,120,703,loadColor,"Load");
-        stepButton = new Button(loadClicker,175,90,312,703,5,loadColor,"Step");
-        solveButton = new Button(loadClicker,175,90,504,703,loadColor,"Solve");
+        stepButton = new Button(null,175,90,312,703,5,loadColor,"Step");
+        solveButton = new Button(null,175,90,504,703,loadColor,"Solve");
 
         init = true;
     }
@@ -72,6 +74,8 @@ public class SudokuHandler {
         if(init) {
             g.setColor(Color.BLACK);
             g.drawImage(logo, 72, 2, null);
+            g.setColor(new Color(228,228,228));
+            g.fillRect(Wpadding, Tpadding, (width - Wpadding * 2), (width - Wpadding * 2));
             g.setStroke(new BasicStroke(4));
             g.setColor(Color.BLACK);
             g.drawRect(Wpadding, Tpadding, (width - Wpadding * 2), (width - Wpadding * 2));
@@ -98,6 +102,16 @@ public class SudokuHandler {
             g.drawLine(103,628,697,628);
             //Draw numbers
 
+            g.setFont(font);
+            if(loaded) {
+                for(int x = 0;x<9;x++){
+                    for(int y = 0;y < 9;y++){
+                        if(sudokuBoard[x][y] != 0) {
+                            g.drawString(String.valueOf(sudokuBoard[x][y]), Wpadding + 22 + x * 66, Tpadding + 48 + y * 66);
+                        }
+                    }
+                }
+            }
             loadButton.draw(g);
             stepButton.draw(g);
             solveButton.draw(g);
