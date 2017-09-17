@@ -1,5 +1,7 @@
 package Main;
 
+import Sudoku.SudokuReader;
+
 import javax.swing.*;
 
 /**

@@ -1,5 +1,8 @@
 package Main;
 
+import Sudoku.SudokuHandler;
+import Sudoku.SudokuReader;
+
 import javax.swing.*;
 import javax.swing.event.MouseInputListener;
 import java.awt.*;
@@ -20,11 +23,14 @@ public class WindowPanel extends JPanel implements Runnable, MouseListener, Mous
 
     private BufferedImage image;
     private Graphics2D g;
+    private SudokuHandler sudokuHandler;
 
     public WindowPanel() {
         setPreferredSize(new Dimension(Width, Height));
         setFocusable(true);
         requestFocus();
+        SudokuReader reader = new SudokuReader();
+        sudokuHandler = new SudokuHandler(reader,this);
         init();
     }
 
@@ -46,7 +52,7 @@ public class WindowPanel extends JPanel implements Runnable, MouseListener, Mous
     private void draw(){
         g.setColor(Color.WHITE);
         g.fillRect(0,0,Width,Height);
-
+        sudokuHandler.draw(g);
     }
 
 
@@ -115,6 +121,6 @@ public class WindowPanel extends JPanel implements Runnable, MouseListener, Mous
     }
 
     public void mouseMoved(MouseEvent e) {
-
+        sudokuHandler.mouseMoved(e,this);
     }
 }
