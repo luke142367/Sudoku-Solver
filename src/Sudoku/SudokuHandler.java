@@ -66,7 +66,6 @@ public class SudokuHandler {
         loadColor = new Color(103,152,152);
         Color temp = new Color(80, 126, 126);
         loadButton = new Button(loadClicker,175,90,120,703,loadColor,"Load");
-        //TODO: change step function to real action
         stepButton = new Button(stepClicker,175,90,312,703,5,loadColor,"Step");
         solveButton = new Button(solveClicker,175,90,504,703,loadColor,"Solve");
 
